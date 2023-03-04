@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Platform,
+  Image,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Animated, {
@@ -20,6 +21,8 @@ import {
   PanGestureHandler,
   PanGestureHandlerGestureEvent,
 } from 'react-native-gesture-handler';
+import SideMenu from '../reanimated1/interactablePlayground/examples/SideMenu';
+import {useNavigation} from '@react-navigation/native';
 
 const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const indices = [0, 1, 2, 3];
@@ -29,13 +32,13 @@ const range = [0, 9999];
 const dotSize = 40;
 
 function ScrollToScreen(): React.ReactElement {
+  const navigation = useNavigation();
   const progress = useSharedValue(0);
   const number = useDerivedValue(() => {
     const val = range[0] + Math.round(progress.value * (range[1] - range[0]));
     return val;
   });
-
-  const changeProgress = (newValue) => {
+  const changeProgress = (newValue: any) => {
     let result = newValue;
     if (result > 1.0) {
       result = 1.0;
@@ -57,31 +60,81 @@ function ScrollToScreen(): React.ReactElement {
   const setRandom = () => {
     changeProgress(Math.random());
   };
-
+  const bufferConfig = {
+    minBufferMs: 15000,
+    maxBufferMs: 50000,
+    bufferForPlaybackMs: 2500,
+    bufferForPlaybackAfterRebufferMs: 5000,
+  };
   return (
     <SafeAreaView>
-      <View style={{alignItems: 'center'}}>
-        {Platform.isTV ? (
-          <View style={{flexDirection: 'row'}}>
-            <TouchableOpacity style={{margin: 20}} onPress={decrement}>
-              <Text>Decrement</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{margin: 20}} onPress={setRandom}>
-              <Text>Set Random</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{margin: 20}} onPress={increment}>
-              <Text>Increment</Text>
-            </TouchableOpacity>
-          </View>
-        ) : (
-          <View>
-            <Text>move dot</Text>
-            <View>
-              <ProgressBar progress={progress} />
+      <View style={{height: '100%'}}>
+        <SideMenu>
+          {Platform.isTV ? (
+            <View style={{flexDirection: 'row', height: '100%'}}>
+              <TouchableOpacity
+                style={{margin: 0}}
+                onPress={() =>
+                  navigation.navigate('Player', {
+                    uri: 'https://app.viloud.tv/hls/channel/579761e910c7369410c8ff9fcef19e62.m3u8',
+                    bufferConfig: bufferConfig,
+                  })
+                }>
+                <Image
+                  style={{width: 200, height: 200}}
+                  source={require('./assets/LOGOBOXPLAYLIST.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{margin: 0}}
+                onPress={() =>
+                  navigation.navigate('Player', {
+                    uri: 'https://app.viloud.tv/hls/channel/9da5583bf56afa146062f169b08946d2.m3u8',
+                    bufferConfig: bufferConfig,
+                  })
+                }>
+                <Image
+                  style={{width: 200, height: 200}}
+                  source={require('./assets/LOGOBOXMAG.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{margin: 0}}
+                onPress={() =>
+                  navigation.navigate('Player', {
+                    uri: 'https://app.viloud.tv/hls/channel/514e62570fec9967f9938d51c236c350.m3u8',
+                    bufferConfig: bufferConfig,
+                  })
+                }>
+                <Image
+                  style={{width: 200, height: 200}}
+                  source={require('./assets/logoBOXarcade.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{margin: 0}}
+                onPress={() =>
+                  navigation.navigate('Player', {
+                    uri: 'https://app.viloud.tv/hls/channel/4e9c57e57e16990e1f71209c5fd6dbd1.m3u8',
+                    bufferConfig: bufferConfig,
+                  })
+                }>
+                <Image
+                  style={{width: 200, height: 200}}
+                  source={require('./assets/LOGOBOXHOT.png')}
+                />
+              </TouchableOpacity>
             </View>
-          </View>
-        )}
-        <NumberDisplay number={number} />
+          ) : (
+            <View>
+              <Text>move dot</Text>
+              <View>
+                <ProgressBar progress={progress} />
+              </View>
+            </View>
+          )}
+          {/* <NumberDisplay number={number} /> */}
+        </SideMenu>
       </View>
     </SafeAreaView>
   );

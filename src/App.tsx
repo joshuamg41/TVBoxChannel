@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   TVEventControl,
   View,
-  LogBox,
+  //LogBox,
 } from 'react-native';
 
 import {ScrollView} from 'react-native-gesture-handler';
@@ -22,21 +22,22 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import Reanimated1 from '../reanimated1/App';
 
-import ExtrapolationExample from './ExtrapolationExample';
-import AnimatedStyleUpdateExample from './AnimatedStyleUpdateExample';
-import WobbleExample from './WobbleExample';
-import DragAndSnapExample from './DragAndSnapExample';
-import ScrollEventExample from './ScrollEventExample';
-import ChatHeadsExample from './ChatHeadsExample';
-import MeasureExample from './MeasureExample';
-import SwipeableListExample from './SwipeableListExample';
-import ScrollableViewExample from './ScrollableViewExample';
+// import ExtrapolationExample from './ExtrapolationExample';
+// import AnimatedStyleUpdateExample from './AnimatedStyleUpdateExample';
+// import WobbleExample from './WobbleExample';
+// import DragAndSnapExample from './DragAndSnapExample';
+// import ScrollEventExample from './ScrollEventExample';
+// import ChatHeadsExample from './ChatHeadsExample';
+// import MeasureExample from './MeasureExample';
+// import SwipeableListExample from './SwipeableListExample';
+// import ScrollableViewExample from './ScrollableViewExample';
 import ScrollToExample from './ScrollToExample';
-import AnimatedTabBarExample from './AnimatedTabBarExample';
-import LightboxExample from './LightboxExample';
-import LiquidSwipe from './LiquidSwipe';
+// import AnimatedTabBarExample from './AnimatedTabBarExample';
+// import LightboxExample from './LightboxExample';
+// import LiquidSwipe from './LiquidSwipe';
 import ScrollExample from './AnimatedScrollExample';
-LogBox.ignoreLogs(['Calling `getNode()`']);
+import Player from './Player';
+//LogBox.ignoreLogs(['Calling `getNode()`']);
 
 type Screens = Record<
   string,
@@ -44,71 +45,71 @@ type Screens = Record<
 >;
 
 const SCREENS: Screens = {
-  AnimatedStyleUpdate: {
-    screen: AnimatedStyleUpdateExample,
-    title: '🆕 Animated Style Update',
-    tv: true,
-  },
-  WobbleExample: {
-    screen: WobbleExample,
-    title: '🆕 Animation Modifiers (Wobble Effect)',
-    tv: true,
-  },
-  DragAndSnapExample: {
-    screen: DragAndSnapExample,
-    title: '🆕 Drag and Snap',
-    tv: false,
-  },
-  MeasureExample: {
-    screen: MeasureExample,
-    title: '🆕 Synchronous Measure',
-    tv: true,
-  },
-  ScrollEventExample: {
-    screen: ScrollEventExample,
-    title: '🆕 Scroll Events',
-    tv: false,
-  },
-  ChatHeadsExample: {
-    screen: ChatHeadsExample,
-    title: '🆕 Chat Heads',
-    tv: false,
-  },
+  // AnimatedStyleUpdate: {
+  //   screen: AnimatedStyleUpdateExample,
+  //   title: ' Animated Style Update',
+  //   tv: true,
+  // },
+  // WobbleExample: {
+  //   screen: WobbleExample,
+  //   title: '🆕 Animation Modifiers (Wobble Effect)',
+  //   tv: true,
+  // },
+  // DragAndSnapExample: {
+  //   screen: DragAndSnapExample,
+  //   title: '🆕 Drag and Snap',
+  //   tv: false,
+  // },
+  // MeasureExample: {
+  //   screen: MeasureExample,
+  //   title: '🆕 Synchronous Measure',
+  //   tv: true,
+  // },
+  // ScrollEventExample: {
+  //   screen: ScrollEventExample,
+  //   title: '🆕 Scroll Events',
+  //   tv: false,
+  // },
+  // ChatHeadsExample: {
+  //   screen: ChatHeadsExample,
+  //   title: '🆕 Chat Heads',
+  //   tv: false,
+  // },
   ScrollableToExample: {
     screen: ScrollToExample,
     title: '🆕 scrollTo',
     tv: true,
   },
-  SwipeableListExample: {
-    screen: SwipeableListExample,
-    title: '🆕 (advanced) Swipeable List',
-    tv: false,
-  },
-  LightboxExample: {
-    screen: LightboxExample,
-    title: '🆕 (advanced) Lightbox',
-    tv: true,
-  },
-  ScrollableViewExample: {
-    screen: ScrollableViewExample,
-    title: '🆕 (advanced) ScrollView imitation',
-    tv: false,
-  },
-  AnimatedTabBarExample: {
-    screen: AnimatedTabBarExample,
-    title: '🆕 (advanced) Tab Bar Example',
-    tv: true,
-  },
-  LiquidSwipe: {
-    screen: LiquidSwipe,
-    title: '🆕 Liquid Swipe Example',
-    tv: false,
-  },
-  ExtrapolationExample: {
-    screen: ExtrapolationExample,
-    title: '🆕 Extrapolation Example',
-    tv: false,
-  },
+  // SwipeableListExample: {
+  //   screen: SwipeableListExample,
+  //   title: '🆕 (advanced) Swipeable List',
+  //   tv: false,
+  // },
+  // LightboxExample: {
+  //   screen: LightboxExample,
+  //   title: '🆕 (advanced) Lightbox',
+  //   tv: true,
+  // },
+  // ScrollableViewExample: {
+  //   screen: ScrollableViewExample,
+  //   title: '🆕 (advanced) ScrollView imitation',
+  //   tv: false,
+  // },
+  // AnimatedTabBarExample: {
+  //   screen: AnimatedTabBarExample,
+  //   title: '🆕 (advanced) Tab Bar Example',
+  //   tv: true,
+  // },
+  // LiquidSwipe: {
+  //   screen: LiquidSwipe,
+  //   title: '🆕 Liquid Swipe Example',
+  //   tv: false,
+  // },
+  // ExtrapolationExample: {
+  //   screen: ExtrapolationExample,
+  //   title: '🆕 Extrapolation Example',
+  //   tv: false,
+  // },
   ScrollExample: {
     screen: ScrollExample,
     title: '🆕 Scroll Example',
@@ -187,11 +188,21 @@ function LaunchReanimated1({
 const Stack = createStackNavigator();
 
 const Reanimated2 = (setUseRea2: (useRea2: boolean) => void) => (
-  <Stack.Navigator>
+  <Stack.Navigator initialRouteName="Homes">
     <Stack.Screen
       name="Home"
-      options={headerOptions('🎬 Reanimated 2.x Examples')}
+      options={{headerShown: false}}
       children={(props) => <MainScreen {...props} setUseRea2={setUseRea2} />}
+    />
+    <Stack.Screen
+      name="Homes"
+      options={{headerShown: false}}
+      component={ScrollToExample}
+    />
+    <Stack.Screen
+      name="Player"
+      options={{headerShown: false}}
+      component={Player}
     />
     {Object.keys(SCREENS).map((name) => (
       <Stack.Screen

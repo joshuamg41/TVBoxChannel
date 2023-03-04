@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
 
 /**
@@ -7,7 +7,7 @@ import Animated from 'react-native-reanimated';
  */
 export default class Box extends React.Component {
   render() {
-    const { style, ...props } = this.props;
+    const {style, ...props} = this.props;
     return <Animated.View style={[styles.box, style]} {...props} />;
   }
 }
