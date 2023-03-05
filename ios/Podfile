@@ -5,7 +5,7 @@ source 'https://github.com/react-native-tvos/react-native-tvos-podspecs.git'
 source 'https://cdn.cocoapods.org/'
 install! 'cocoapods', :deterministic_uuids => false
 
-target 'TVReanimated' do
+target 'boxchannel' do
 
   platform :ios, '13.0'
 
@@ -23,13 +23,13 @@ target 'TVReanimated' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'TVReanimatedTests' do
+  target 'boxchannelTests' do
     inherit! :complete
     # Pods for testing
   end
 end
 
-target 'TVReanimated-tvOS' do
+target 'boxchannel-tvOS' do
 
   platform :tvos, '13.0'
 
@@ -47,7 +47,7 @@ target 'TVReanimated-tvOS' do
     :app_path => "#{Dir.pwd}/.."
   )
 
-  target 'TVReanimated-tvOSTests' do
+  target 'boxchannel-tvOSTests' do
     inherit! :complete
     # Pods for testing
   end

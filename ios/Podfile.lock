@@ -206,6 +206,11 @@ PODS:
     - RCTTypeSafety
     - React-Core
     - ReactCommon/turbomodule/core
+  - react-native-video (5.2.1):
+    - React-Core
+    - react-native-video/Video (= 5.2.1)
+  - react-native-video/Video (5.2.1):
+    - React-Core
   - React-perflogger (0.69.6-1)
   - React-RCTAnimation (0.69.6-1):
     - RCT-Folly (= 2021.06.28.00-v2)
@@ -324,6 +329,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-video (from `../node_modules/react-native-video`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
@@ -384,6 +390,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-video:
+    :path: "../node_modules/react-native-video"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTAnimation:
@@ -439,6 +447,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 2b65000c70515b8668306c65d40a443fcb39580e
   React-logger: fb5fe0a408e6fdaeeed56b8b8c46f72df4ce1eb9
   react-native-safe-area-context: 99b24a0c5acd0d5dcac2b1a7f18c49ea317be99a
+  react-native-video: c26780b224543c62d5e1b2a7244a5cd1b50e8253
   React-perflogger: 5ba9671854f1930c00aa318f51385893feb01720
   React-RCTAnimation: 469308af6e18a1af4aa32abf0fb1cc9fa6e0827a
   React-RCTBlob: 32de286507a3df2792dd286fb27b0ce1e4bc2f46
@@ -456,6 +465,6 @@ SPEC CHECKSUMS:
   RNSVG: 6adc5c52d2488a476248413064b7f2832e639057
   Yoga: b46158abe1228aa7d4658514f2155ece68bd309e
 
-PODFILE CHECKSUM: c10392ff4467abfe1d754fb61610525151592dd6
+PODFILE CHECKSUM: 43c7502220bc8af78bba5c69c5a87268972f3ae6
 
 COCOAPODS: 1.11.3

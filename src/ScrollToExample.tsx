@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -7,6 +7,8 @@ import {
   ScrollView,
   Platform,
   Image,
+  Alert,
+  BackHandler,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Animated, {
@@ -34,6 +36,55 @@ const dotSize = 40;
 function ScrollToScreen(): React.ReactElement {
   const navigation = useNavigation();
   const progress = useSharedValue(0);
+  const [isFocused1, setIsFocused1] = useState(false);
+  const [isFocused2, setIsFocused2] = useState(false);
+  const [isFocused3, setIsFocused3] = useState(false);
+  const [isFocused4, setIsFocused4] = useState(false);
+  const [text, setText] = React.useState('');
+  const hasUnsavedChanges = false;
+
+  const handleFocus1 = () => {
+    setIsFocused1(true);
+  };
+
+  const handleBlur1 = () => {
+    setIsFocused1(false);
+  };
+
+  const handleFocus2 = () => {
+    setIsFocused2(true);
+  };
+
+  const handleBlur2 = () => {
+    setIsFocused2(false);
+  };
+
+  const handleFocus3 = () => {
+    setIsFocused3(true);
+  };
+
+  const handleBlur3 = () => {
+    setIsFocused3(false);
+  };
+  const handleFocus4 = () => {
+    setIsFocused4(true);
+  };
+
+  const handleBlur4 = () => {
+    setIsFocused4(false);
+  };
+  useEffect(
+    () =>
+      navigation.addListener('beforeRemove', (e) => {
+        // Prevent default behavior of leaving the screen
+        e.preventDefault();
+
+        // Prompt the user before leaving the screen
+        console.log('before remove');
+      }),
+    [navigation, hasUnsavedChanges],
+  );
+
   const number = useDerivedValue(() => {
     const val = range[0] + Math.round(progress.value * (range[1] - range[0]));
     return val;
@@ -71,56 +122,70 @@ function ScrollToScreen(): React.ReactElement {
       <View style={{height: '100%'}}>
         <SideMenu>
           {Platform.isTV ? (
-            <View style={{flexDirection: 'row', height: '100%'}}>
+            <View style={{flexDirection: 'row', height: 115, width: '100%'}}>
               <TouchableOpacity
-                style={{margin: 0}}
+                style={[styles.channel, isFocused1 && styles.channelfocus]}
                 onPress={() =>
                   navigation.navigate('Player', {
                     uri: 'https://app.viloud.tv/hls/channel/579761e910c7369410c8ff9fcef19e62.m3u8',
                     bufferConfig: bufferConfig,
                   })
-                }>
+                }
+                onFocus={handleFocus1}
+                onBlur={handleBlur1}>
                 <Image
-                  style={{width: 200, height: 200}}
+                  style={styles.img}
                   source={require('./assets/LOGOBOXPLAYLIST.png')}
                 />
               </TouchableOpacity>
               <TouchableOpacity
-                style={{margin: 0}}
+                style={[styles.channel, isFocused2 && styles.channelfocus]}
                 onPress={() =>
                   navigation.navigate('Player', {
                     uri: 'https://app.viloud.tv/hls/channel/9da5583bf56afa146062f169b08946d2.m3u8',
                     bufferConfig: bufferConfig,
                   })
-                }>
+                }
+                onFocus={handleFocus2}
+                onBlur={handleBlur2}>
                 <Image
-                  style={{width: 200, height: 200}}
+                  style={styles.img}
                   source={require('./assets/LOGOBOXMAG.png')}
                 />
               </TouchableOpacity>
               <TouchableOpacity
-                style={{margin: 0}}
+                style={[styles.channel, isFocused3 && styles.channelfocus]}
                 onPress={() =>
                   navigation.navigate('Player', {
                     uri: 'https://app.viloud.tv/hls/channel/514e62570fec9967f9938d51c236c350.m3u8',
                     bufferConfig: bufferConfig,
                   })
-                }>
+                }
+                onFocus={handleFocus3}
+                onBlur={handleBlur3}>
                 <Image
-                  style={{width: 200, height: 200}}
+                  style={styles.img}
                   source={require('./assets/logoBOXarcade.png')}
                 />
               </TouchableOpacity>
               <TouchableOpacity
-                style={{margin: 0}}
+                style={[styles.channel, isFocused4 && styles.channelfocus]}
                 onPress={() =>
                   navigation.navigate('Player', {
                     uri: 'https://app.viloud.tv/hls/channel/4e9c57e57e16990e1f71209c5fd6dbd1.m3u8',
                     bufferConfig: bufferConfig,
                   })
-                }>
+                }
+                activeOpacity={0.7}
+                onFocus={handleFocus4}
+                onBlur={handleBlur4}>
                 <Image
-                  style={{width: 200, height: 200}}
+                  style={{
+                    width: '85%',
+                    height: '100%',
+                    resizeMode: 'cover',
+                    marginLeft: 10,
+                  }}
                   source={require('./assets/LOGOBOXHOT.png')}
                 />
               </TouchableOpacity>
@@ -264,6 +329,32 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     width: dotSize,
     height: dotSize,
+  },
+  channel: {
+    margin: 0,
+    width: 190,
+    height: '100%',
+    backgroundColor: '#333030',
+    marginHorizontal: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderRadius: 10,
+    borderColor: 'grey',
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    justtifyItems: 'center',
+    // transform: [{scale: 1.3}],
+  },
+  channelfocus: {
+    zIndex: 1,
+    transform: [{scale: 1.3}],
+  },
+  img: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
 });
 

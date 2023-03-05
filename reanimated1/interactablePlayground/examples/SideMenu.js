@@ -32,6 +32,15 @@ const SideMenuHook = ({children}) => {
         style={styles.backgroundImage}
         source={require('../assets/Tvbackground.jpg')}
       />
+      <View>
+        <View style={styles.logoContainer}>
+          <Text style={{color: 'white'}}>El contenido no para!</Text>
+          <Image
+            style={styles.logo}
+            source={require('../assets/Logoboxchannelssquare.png')}
+          />
+        </View>
+      </View>
       <View style={styles.sideMenuContainer} pointerEvents="box-none">
         <Interactable.View
           ref={(ref) => setMenuInstance(ref)}
@@ -41,10 +50,8 @@ const SideMenuHook = ({children}) => {
           initialPosition={{x: -SideMenuWidth}}>
           <View style={styles.sideMenu}>
             <Text style={styles.sideMenuTitle}>Menu</Text>
-            <Button
-              title="Button 1"
-              onPress={() => Alert.alert('Button 1 pressed')}
-            />
+            <Button title="Report" onPress={() => Alert.alert('')} />
+            <Text></Text>
             {/* <Button
               title="Button 2"
               onPress={() => alert('Button 2 pressed')}
@@ -53,7 +60,7 @@ const SideMenuHook = ({children}) => {
               title="Button 3"
               onPress={() => alert('Button 3 pressed')}
             /> */}
-            <Button title="Close" onPress={onClosePress} />
+            <Button title="Cerrar" onPress={onClosePress} />
           </View>
         </Interactable.View>
       </View>
@@ -83,10 +90,21 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     backgroundColor: 'black',
   },
+  logoContainer: {
+    position: 'absolute',
+    top: 0,
+    right: 30,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  logo: {
+    width: 90,
+    height: 80,
+  },
   backgroundImage: {
     position: 'absolute',
     top: 0,
-    height: '100%',
+    height: '40%',
     width: '100%',
     zIndex: 0,
   },
@@ -102,10 +120,11 @@ const styles = StyleSheet.create({
   sideMenu: {
     left: 0,
     width: Screen.width,
-    paddingLeft: RemainingWidth,
+    paddingLeft: 10 + RemainingWidth,
     flex: 1,
-    backgroundColor: '#aaa',
+    backgroundColor: '#333030',
     paddingTop: 80,
+    paddingHorizontal: 10,
   },
   sideMenuTitle: {
     fontSize: 20,
@@ -138,6 +157,5 @@ const styles = StyleSheet.create({
   },
   content: {
     fontSize: 18,
-    color: 'red',
   },
 });

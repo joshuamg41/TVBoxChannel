@@ -36,6 +36,7 @@ import ScrollToExample from './ScrollToExample';
 // import LightboxExample from './LightboxExample';
 // import LiquidSwipe from './LiquidSwipe';
 import ScrollExample from './AnimatedScrollExample';
+import splashScreen from './splashScreen';
 import Player from './Player';
 //LogBox.ignoreLogs(['Calling `getNode()`']);
 
@@ -188,7 +189,7 @@ function LaunchReanimated1({
 const Stack = createStackNavigator();
 
 const Reanimated2 = (setUseRea2: (useRea2: boolean) => void) => (
-  <Stack.Navigator initialRouteName="Homes">
+  <Stack.Navigator initialRouteName="Splash">
     <Stack.Screen
       name="Home"
       options={{headerShown: false}}
@@ -204,14 +205,20 @@ const Reanimated2 = (setUseRea2: (useRea2: boolean) => void) => (
       options={{headerShown: false}}
       component={Player}
     />
-    {Object.keys(SCREENS).map((name) => (
+    <Stack.Screen
+      name="Splash"
+      options={{headerShown: false}}
+      component={splashScreen}
+    />
+
+    {/* {Object.keys(SCREENS).map((name) => (
       <Stack.Screen
         key={name}
         name={name}
         getComponent={() => SCREENS[name].screen}
         options={headerOptions(SCREENS[name].title || name)}
       />
-    ))}
+    ))} */}
   </Stack.Navigator>
 );
 
