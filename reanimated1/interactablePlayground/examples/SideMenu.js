@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -44,7 +44,7 @@ const SideMenuHook = ({children}) => {
       <View style={styles.sideMenuContainer} pointerEvents="box-none">
         <Interactable.View
           ref={(ref) => setMenuInstance(ref)}
-          horizontalOnly={true}
+          horizontalOnly={false}
           snapPoints={[{x: 0}, {x: -SideMenuWidth}]}
           boundaries={{right: RemainingWidth / 2}}
           initialPosition={{x: -SideMenuWidth}}>

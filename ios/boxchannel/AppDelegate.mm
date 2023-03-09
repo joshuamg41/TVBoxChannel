@@ -41,7 +41,7 @@
   bridge.surfacePresenter = _bridgeAdapter.surfacePresenter;
 #endif
 
-  UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"TVReanimated", nil);
+  UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"boxchannel", nil);
 
 #if !TARGET_OS_TV
   if (@available(iOS 13.0, *)) {
