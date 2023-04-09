@@ -82,6 +82,7 @@ function ScrollToScreen(): React.ReactElement {
       }),
     [navigation, hasUnsavedChanges],
   );
+  
 
   const number = useDerivedValue(() => {
     const val = range[0] + Math.round(progress.value * (range[1] - range[0]));
